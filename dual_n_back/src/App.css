@@ -1,0 +1,89 @@
+:root {
+  --bg-color: #f0f2f5;
+  --accent-color: #6366f1;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --text-main: #1e293b;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem; 
+}
+
+.header h1 {
+  font-size: 3rem;
+  padding-bottom: 10px;
+  letter-spacing: -2px;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* 3x3 Grid Logic */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 15px;
+}
+
+.grid-cell {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.action_button 
+{
+  width:45px; 
+  height: 45px;
+}
+
+.grid-cell:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--accent-color);
+}
+
+/* Buttons */
+.footer {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.secondary {
+  background-color: white;
+  color: var(--text-main);
+  border: 1px solid #e2e8f0;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}

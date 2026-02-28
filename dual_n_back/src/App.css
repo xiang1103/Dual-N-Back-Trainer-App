@@ -20,7 +20,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem; 
+  gap: 2rem;
+}
+
+.header {
+  text-align: center;
 }
 
 .header h1 {
@@ -31,7 +35,22 @@ body {
   margin: 0;
 }
 
-/* 3x3 Grid Logic */
+.round-info {
+  text-align: center;
+  color: #64748b;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Shared area that holds either the grid or the results card */
+.grid-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3x3 Grid */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -43,19 +62,13 @@ body {
   background: white;
   border-radius: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-.action_button 
-{
-  width:45px; 
-  height: 45px;
+  transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
-.grid-cell:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border: 2px solid var(--accent-color);
+.grid-cell.active {
+  background-color: var(--accent-color);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.55);
+  transform: scale(1.06);
 }
 
 /* Buttons */
@@ -86,4 +99,204 @@ body {
 
 .btn:active {
   transform: scale(0.95);
+}
+
+.btn.selected {
+  background-color: #e0e7ff;
+  border: 2px solid var(--accent-color);
+}
+
+.btn.correct {
+  background-color: #dcfce7;
+  border: 2px solid #22c55e;
+}
+
+.btn.wrong {
+  background-color: #fee2e2;
+  border: 2px solid #ef4444;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+.eye_btn, .hear_btn {
+  width: 45px;
+  height: 45px;
+  display: block;
+}
+
+/* Game controls layout */
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Timer */
+.timer-badge {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-align: center;
+  min-width: 70px;
+}
+
+.timer-badge.urgent {
+  color: #ef4444;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Idle / customization screen */
+.idle-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.n-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.n-picker-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.n-option {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.n-option:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.n-option.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.n-description {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* No Match button */
+.no-match-btn {
+  background-color: white;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+}
+
+.no-match-btn:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: var(--text-main);
+}
+
+/* No Match feedback result */
+.no-match-result {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 12px;
+}
+
+.no-match-result.correct {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 2px solid #22c55e;
+}
+
+.no-match-result.wrong {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 2px solid #ef4444;
+}
+
+/* Intro round hint */
+.intro-hint {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Feedback hints */
+.feedback-hints {
+  display: flex;
+  gap: 1.25rem;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Results screen — same footprint as the 3×3 grid (3×100px + 2×15px gap = 330px) */
+.results {
+  width: 330px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.results h2 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.score-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  min-width: 280px;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.score-val {
+  font-weight: 700;
+  color: var(--accent-color);
+  font-size: 1rem;
 }
